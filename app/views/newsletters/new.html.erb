@@ -1,0 +1,70 @@
+<!-- GrapesJS CSS and JS -->
+<link rel="stylesheet" href="https://unpkg.com/grapesjs@0.21.8/dist/css/grapes.min.css">
+<script src="https://unpkg.com/grapesjs@0.21.8/dist/grapes.min.js"></script>
+
+<div class="newsletter-editor">
+  <h1>Create New Newsletter</h1>
+  
+  <!-- GrapesJS Editor Container -->
+  <div id="gjs">
+    <!-- GrapesJS will replace this content -->
+    <div style="padding: 20px; text-align: center; color: #666;">
+      Loading GrapesJS Editor...
+    </div>
+  </div>
+  
+  <!-- These buttons will interact with GrapesJS -->
+  <div class="editor-actions">
+    <button id="save-newsletter" class="btn btn-success">Save Newsletter</button>
+    <button id="preview-newsletter" class="btn btn-info">Preview</button>
+    <button id="clear-editor" class="btn btn-warning">Clear</button>
+  </div>
+</div>
+
+<style>
+  .newsletter-editor {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  #gjs {
+    flex: 1;
+    border: 1px solid #ddd;
+    margin: 10px 0;
+  }
+  
+  .editor-actions {
+    padding: 10px;
+    background-color: #f8f9fa;
+    border-top: 1px solid #ddd;
+  }
+  
+  .btn {
+    padding: 8px 16px;
+    margin: 0 5px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  .btn-success { background-color: #28a745; color: white; }
+  .btn-info { background-color: #17a2b8; color: white; }
+  .btn-warning { background-color: #ffc107; color: black; }
+  
+  .btn:hover {
+    opacity: 0.8;
+  }
+  
+  /* GrapesJS specific styles */
+  .gjs-editor {
+    height: 100% !important;
+  }
+  
+  .gjs-cv-canvas {
+    background-color: #f8f9fa;
+  }
+</style>
+
+<%= javascript_import_module_tag "newsletter_editor" %>
