@@ -1,0 +1,56 @@
+<div class="container">
+  <h1>Newsletter Manager</h1>
+  <p>Welcome to your newsletter editor! This is where we'll learn GrapesJS step by step.</p>
+  
+  <div class="actions">
+    <%= link_to "Create New Newsletter", new_newsletter_path, class: "btn btn-primary" %>
+  </div>
+  
+  <div class="info">
+    <h2>What we'll learn:</h2>
+    <ul>
+      <li>How GrapesJS works under the hood</li>
+      <li>How to add custom blocks</li>
+      <li>How preview works</li>
+      <li>How to integrate with Rails</li>
+    </ul>
+  </div>
+</div>
+
+<style>
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    margin: 10px 0;
+  }
+  
+  .btn:hover {
+    background-color: #0056b3;
+  }
+  
+  .info {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 5px;
+    margin-top: 20px;
+  }
+  
+  .info ul {
+    margin: 10px 0;
+  }
+  
+  .info li {
+    margin: 5px 0;
+  }
+</style>
