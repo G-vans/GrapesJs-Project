@@ -34,6 +34,11 @@ function initializeNewsletterEditor() {
       // Use minimal configuration to start
       storageManager: false,
       plugins: [],
+      
+      // Trait Manager - for custom properties
+      traitManager: {
+        appendTo: '.traits-container',
+      },
     });
     console.log('✅ GrapesJS editor initialized successfully:', editor);
   } catch (error) {
@@ -41,6 +46,25 @@ function initializeNewsletterEditor() {
     alert('Failed to initialize GrapesJS: ' + error.message);
     return;
   }
+
+  // Configure Trait Manager
+  const traitManager = editor.TraitManager;
+  
+  // Show/hide traits container when components are selected
+  editor.on('component:selected', function(component) {
+    const traitsContainer = document.querySelector('.traits-container');
+    if (component && component.get('traits') && component.get('traits').length > 0) {
+      traitsContainer.style.display = 'block';
+      console.log('🎯 Showing traits for:', component.get('type'));
+    } else {
+      traitsContainer.style.display = 'none';
+    }
+  });
+  
+  editor.on('component:deselected', function() {
+    const traitsContainer = document.querySelector('.traits-container');
+    traitsContainer.style.display = 'none';
+  });
   
   // Add some basic blocks manually (we'll learn about this)
   const blockManager = editor.BlockManager;
@@ -72,7 +96,7 @@ function initializeNewsletterEditor() {
 
   // ===== REAL ESTATE CRM BLOCKS =====
   
-  // Property Card Block
+  // Property Card Block with Custom Traits
   blockManager.add('property-card', {
     id: 'property-card',
     label: 'Property Card',
@@ -100,6 +124,52 @@ function initializeNewsletterEditor() {
       </div>
     `,
     category: 'Real Estate',
+    
+    // Custom Traits - these appear in the right panel when selected
+    traits: [
+      {
+        type: 'text',
+        name: 'price',
+        label: 'Property Price',
+        placeholder: 'e.g., $450,000',
+        changeProp: 1, // Update on every keystroke
+      },
+      {
+        type: 'text',
+        name: 'address',
+        label: 'Property Address',
+        placeholder: 'e.g., 123 Main Street, Austin, TX 78701',
+        changeProp: 1,
+      },
+      {
+        type: 'number',
+        name: 'bedrooms',
+        label: 'Bedrooms',
+        placeholder: '3',
+        changeProp: 1,
+      },
+      {
+        type: 'number',
+        name: 'bathrooms',
+        label: 'Bathrooms',
+        placeholder: '2',
+        changeProp: 1,
+      },
+      {
+        type: 'number',
+        name: 'sqft',
+        label: 'Square Feet',
+        placeholder: '1200',
+        changeProp: 1,
+      },
+      {
+        type: 'text',
+        name: 'cta_text',
+        label: 'Button Text',
+        placeholder: 'View Details',
+        changeProp: 1,
+      },
+    ],
   });
 
   // Agent Profile Block
